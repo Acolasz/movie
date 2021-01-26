@@ -1,3 +1,10 @@
+#Installed packages
+* FontAweSome: [fontawesome.react](https://fontawesome.com/how-to-use/on-the-web/using-with/react)
+```shell script
+yarn add @fortawesome/fontawesome-svg-core
+yarn add @fortawesome/free-solid-svg-icons
+yarn add @fortawesome/react-fontawesome
+```
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
