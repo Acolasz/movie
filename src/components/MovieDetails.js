@@ -11,7 +11,7 @@ function MovieDetails(props) {
   };
   const rateClicked = rate => evt => {
     fetch("http://localhost:9094/product/"+mov.id+"/rate", {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
