@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+import { ApiServices } from "../ApiServices";
+
 
 function MovieFrom(props) {
+  const [ id, setId ] = useState(props.movie.id);
   const [ name, setName ] = useState(props.movie.name);
   const [ description, setDescription ] = useState(props.movie.description);
+  const [ rate, setRate ] = useState(props.movie.rate);
+  const [ detail1, setDetail1 ] = useState(props.movie.detail1);
+  const [ detail2, setDetail2 ] = useState(props.movie.detail2);
 
   const updateClicked = () => {
-    console.log('update here')
+    ApiServices.updateMovie(props.movie.id, {id, name, description, detail1, detail2, rate})
+      .then( resp => console.log(resp) )
+      .catch( error => console.log(error) )
   }
   return (
     <React.Fragment>
