@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ApiServices } from "../ApiServices";
 
-
 function MovieFrom(props) {
   const [ id, setId ] = useState(props.movie.id);
   const [ name, setName ] = useState(props.movie.name);
@@ -12,7 +11,7 @@ function MovieFrom(props) {
 
   const updateClicked = () => {
     ApiServices.updateMovie(props.movie.id, {id, name, description, detail1, detail2, rate})
-      .then( resp => console.log(resp) )
+      .then( resp => props.updateMovie(resp) )
       .catch( error => console.log(error) )
   }
   return (

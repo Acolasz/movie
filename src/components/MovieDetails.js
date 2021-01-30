@@ -10,7 +10,7 @@ function MovieDetails(props) {
     setHighlighted(high)
   };
   const rateClicked = rate => evt => {
-    fetch("http://localhost:9094/product/"+mov.id+"/rate", {
+    fetch(`http://localhost:9094/product/${mov.id}/rate`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ function MovieDetails(props) {
       .catch(error => console.log(error))
   }
   const getDetails = () => {
-    fetch("http://localhost:9094/product/"+mov.id, {
+      fetch(`http://localhost:9094/product/${mov.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
