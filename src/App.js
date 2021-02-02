@@ -20,16 +20,30 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  // const movieClicked = movie => {
-  //   setSelectedMovie(movie);
-  // }
   const loadMovie = movie => {
     setSelectedMovie(movie);
-    // setEditedMovie(null);
+    setEditedMovie(null);
   }
   const editClicked = movie => {
     setEditedMovie(movie);
     setSelectedMovie(null);
+  }
+  const updateMovie = movie => {
+    const newMovies = movies.map( mov => {
+      if (mov.id === movie.id) {
+        return movie;
+      }
+      return mov;
+    })
+    setMovies(newMovies)
+  }
+  const newMovie = () => {
+    setEditedMovie({name: '', description: '',  });
+    setSelectedMovie(null);
+  }
+  const movieCreated = movie => {
+    const newMovies = [...movies, movie];
+    setMovies(newMovies);
   }
   return (
     <div className="App">
@@ -37,9 +51,12 @@ function App() {
         <h1>Movie</h1>
       </header>
       <div className="layout">
+        <div>
         <MovieList movies={movies} movieClicked={loadMovie} editClicked={editClicked} />
+        <button onClick={newMovie}>New Movie</button>
+        </div>
         <MovieDetails movie={selectedMovie} updateMovie={loadMovie} />
-        { editedMovie ? <MovieFrom movie={editedMovie} /> : null }
+        { editedMovie ? <MovieFrom movie={editedMovie} updateMovie={updateMovie} movieCreated={movieCreated} /> : null }
       </div>
     </div>
   );

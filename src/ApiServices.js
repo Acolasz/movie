@@ -12,4 +12,15 @@ export class ApiServices {
     })
       .then( resp => resp.json() )
   }
+  static createMovie(body) {
+    return fetch(`http://localhost:9094/product`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Authorization': `TOKEN ${TOKEN}`
+      },
+      body: JSON.stringify( body )
+    })
+      .then( resp => resp.json() )
+  }
 }

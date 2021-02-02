@@ -14,6 +14,11 @@ function MovieFrom(props) {
       .then( resp => props.updateMovie(resp) )
       .catch( error => console.log(error) )
   }
+  const createClicked = () => {
+    ApiServices.createMovie({id, name, description, detail1, detail2, rate})
+      .then( resp => props.movieCreated(resp) )
+      .catch( error => console.log(error) )
+  }
   return (
     <React.Fragment>
       {
@@ -22,13 +27,19 @@ function MovieFrom(props) {
             <h1>{props.movie && props.movie.name} edited</h1>
             <label htmlFor="name">Name</label><br/>
             <input id="name" type="text" placeholder="Name" value={name}
-              onChange={ evt => setName(evt.target.value) }
+                   onChange={ evt => setName(evt.target.value) }
             /><br/>
             <label htmlFor="description">Description</label><br/>
             <textarea id="description" type="text" placeholder="Description" value={description}
                       onChange={ evt => setDescription(evt.target.value) }
             /><br/>
-            <button onClick={updateClicked}>Update</button>
+            { props.movie.id ?
+              <button onClick={updateClicked}>Update</button> :
+              <button onClick={createClicked}>Create</button>
+            }
+
+
+
             {/*<label>Details1</label><br/>*/}
             {/*<input type="text" placeholder="Details1"></input>*/}
             {/*<label>Details2</label><br/>*/}
