@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ApiServices } from "../ApiServices";
 
 function MovieFrom(props) {
-  const [ id, setId ] = useState(props.movie.id);
-  const [ name, setName ] = useState(props.movie.name);
-  const [ description, setDescription ] = useState(props.movie.description);
-  const [ rate, setRate ] = useState(props.movie.rate);
-  const [ detail1, setDetail1 ] = useState(props.movie.detail1);
-  const [ detail2, setDetail2 ] = useState(props.movie.detail2);
+  const [ id, setId ] = useState();
+  const [ name, setName ] = useState();
+  const [ description, setDescription ] = useState();
+  const [ rate, setRate ] = useState();
+  const [ detail1, setDetail1 ] = useState();
+  const [ detail2, setDetail2 ] = useState();
+
+  useEffect( () => {
+    setId(props.movie.id);
+    setName(props.movie.name);
+    setDescription(props.movie.description);
+    setRate(props.movie.rate);
+    setDetail1(props.movie.detail1);
+    setDetail2(props.movie.detail2);
+  }, [props.movie])
 
   const updateClicked = () => {
     ApiServices.updateMovie(props.movie.id, {id, name, description, detail1, detail2, rate})
@@ -24,7 +33,7 @@ function MovieFrom(props) {
       {
         props.movie ? (
           <div>
-            <h1>{props.movie && props.movie.name} edited</h1>
+            <h1>{props.movie && props.movie.name}</h1>
             <label htmlFor="name">Name</label><br/>
             <input id="name" type="text" placeholder="Name" value={name}
                    onChange={ evt => setName(evt.target.value) }
